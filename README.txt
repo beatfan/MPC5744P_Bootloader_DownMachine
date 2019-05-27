@@ -1,0 +1,4 @@
+MPC5744P_CAN_Bootloader 为Bootloader程序，起始地址为 0xF98000
+MPC5744P_CAN_UserApp 为用户程序，起始地址为 0x1000000
+
+修改起始地址可以通过 xxxx_flash.ld文件修改，注意Bootloader一定要在Boot partition起始处

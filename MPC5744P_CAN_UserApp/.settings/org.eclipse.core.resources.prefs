@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+encoding//src/Bootloader/Bootloader.c=UTF-8
+encoding//src/Bootloader/Bootloader.h=UTF-8
+encoding//src/Bootloader/UserAppFlash.c=UTF-8
+encoding//src/Bootloader/UserAppFlash.h=UTF-8
+encoding//src/Drivers/Flash/flash_c55_driver.h=UTF-8
+encoding//src/main.c=UTF-8

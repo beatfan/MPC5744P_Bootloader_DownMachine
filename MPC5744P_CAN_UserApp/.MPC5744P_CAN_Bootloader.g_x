@@ -1,0 +1,91 @@
+<CodeGenerationInfo>
+  <ToolchainSettings>
+    <option>
+      <name>PE_G_4PEx_ToolChain_C_Compiler_Includes</name>
+      <values lines_count="8">
+        <Line>"${ProjDirPath}/SDK/platform/drivers/src/clock/MPC57xx"</Line>
+        <Line>"${ProjDirPath}/SDK/rtos/osif/"</Line>
+        <Line>"${ProjDirPath}/SDK/platform/drivers/src/flash_c55"</Line>
+        <Line>"${ProjDirPath}/SDK/platform/devices"</Line>
+        <Line>"${ProjDirPath}/SDK/platform/devices/common"</Line>
+        <Line>"${ProjDirPath}/SDK/platform/devices/MPC5744P/include"</Line>
+        <Line>"${ProjDirPath}/SDK/platform/devices/MPC5744P/startup"</Line>
+        <Line>"${ProjDirPath}/SDK/platform/drivers/inc"</Line>
+      </values>
+    </option>
+    <option>
+      <name>PE_G_4PEx_ilg_gnuarmeclipse_managedbuild_cross_option_c_compiler_defs</name>
+      <values lines_count="1">
+        <Line>"CPU_MPC5744P_257"</Line>
+      </values>
+    </option>
+  </ToolchainSettings>
+  <GeneratedFilesList>
+    <GeneratedByPE>
+      <File Name="SDK/platform/drivers/inc/pins_driver.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718197" FileType="1048576" />
+      <File Name="SDK/platform/drivers/inc/clock.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718243" FileType="1048576" />
+      <File Name="Generated_Code/canCom1.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718368" FileType="45637" CompNumb="5" />
+      <File Name="SDK/platform/drivers/src/flexcan/flexcan_hw_access.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718275" FileType="1048576" />
+      <File Name="SDK/platform/drivers/inc/interrupt_manager.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718228" FileType="1048576" />
+      <File Name="SDK/platform/devices/MPC5744P/startup/system_MPC5744P.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718337" FileType="1048576" />
+      <File Name="Generated_Code/canCom1.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718353" FileType="45637" CompNumb="5" />
+      <File Name="SDK/platform/drivers/src/flexcan/flexcan_hw_access.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718259" FileType="1048576" />
+      <File Name="SDK/platform/devices/MPC5744P/startup/system_MPC5744P.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718337" FileType="1048576" />
+      <File Name="Documentation/MPC5744P_CAN_Bootloader.txt" FileDate="2018-12-26, 09:45:18" FileAge="1545788718431" FileType="3072" />
+      <File Name="SDK/platform/drivers/inc/flash_c55_driver.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718321" FileType="1048576" />
+      <File Name="Generated_Code/clockMan1.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718368" FileType="45637" CompNumb="3" />
+      <File Name="Generated_Code/clockMan1.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718368" FileType="45637" CompNumb="3" />
+      <File Name="Generated_Code/Cpu.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718353" FileType="45637" CompNumb="1" />
+      <File Name="SDK/platform/devices/startup.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718337" FileType="1048576" />
+      <File Name="Generated_Code/Cpu.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718353" FileType="45637" CompNumb="1" />
+      <File Name="SDK/platform/drivers/src/clock/MPC57xx/clock_MPC57xx.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718228" FileType="1048576" />
+      <File Name="SDK/platform/drivers/src/edma/edma_irq.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718259" FileType="1048576" />
+      <File Name="SDK/platform/drivers/src/clock/MPC57xx/cgm_hw_access.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718228" FileType="1048576" />
+      <File Name="SDK/platform/drivers/src/interrupt/interrupt_manager_MPC57xx.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718228" FileType="1048576" />
+      <File Name="Sources/main.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718353" FileType="128" />
+      <File Name="SDK/platform/devices/startup.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718337" FileType="1048576" />
+      <File Name="SDK/platform/drivers/src/clock/MPC57xx/clock_MPC57xx.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718228" FileType="1048576" />
+      <File Name="SDK/platform/drivers/src/edma/edma_irq.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718243" FileType="1048576" />
+      <File Name="SDK/platform/drivers/inc/edma_driver.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718259" FileType="1048576" />
+      <File Name="SDK/platform/drivers/src/pins/siul2/pins_siul2_driver.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718212" FileType="1048576" />
+      <File Name="SDK/platform/drivers/src/pins/siul2/pins_siul2_driver.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718212" FileType="1048576" />
+      <File Name="SDK/platform/drivers/src/flash_c55/flash_c55_hw_access.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718321" FileType="1048576" />
+      <File Name="SDK/platform/drivers/inc/flexcan_driver.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718275" FileType="1048576" />
+      <File Name="SDK/platform/devices/MPC5744P/include/MPC5744P.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718337" FileType="1048576" />
+      <File Name="SDK/platform/devices/device_registers.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718321" FileType="1048576" />
+      <File Name="Generated_Code/dmaController1.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718368" FileType="45637" CompNumb="6" />
+      <File Name="SDK/platform/devices/callbacks.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718321" FileType="1048576" />
+      <File Name="SDK/platform/drivers/src/flexcan/flexcan_driver.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718275" FileType="1048576" />
+      <File Name="Generated_Code/dmaController1.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718368" FileType="45637" CompNumb="6" />
+      <File Name="SDK/platform/drivers/src/edma/edma_driver.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718243" FileType="1048576" />
+      <File Name="SDK/platform/drivers/src/clock/MPC57xx/mc_me_hw_access.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718228" FileType="1048576" />
+      <File Name="Generated_Code/pwrMan1.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718353" FileType="45637" CompNumb="9" />
+      <File Name="SDK/platform/drivers/src/clock/MPC57xx/cgmcs_hw_access.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718228" FileType="1048576" />
+      <File Name="SDK/platform/drivers/src/pins/siul2/siul2_hw_access.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718212" FileType="1048576" />
+      <File Name="Generated_Code/pin_mux.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718368" FileType="45637" CompNumb="2" />
+      <File Name="Generated_Code/pwrMan1.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718353" FileType="45637" CompNumb="9" />
+      <File Name="Documentation/MPC5744P_CAN_Bootloader_Settings.xml" FileDate="2018-12-26, 09:45:18" FileAge="1545788718415" FileType="3072" />
+      <File Name="SDK/platform/devices/devassert.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718321" FileType="1048576" />
+      <File Name="SDK/platform/drivers/src/power/MPC57xx/power_manager_MPC57xx.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718306" FileType="1048576" />
+      <File Name="Generated_Code/pin_mux.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718368" FileType="45637" CompNumb="2" />
+      <File Name="SDK/platform/drivers/src/pins/siul2/siul2_hw_access.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718212" FileType="1048576" />
+      <File Name="SDK/platform/devices/MPC5744P/include/MPC5744P_features.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718337" FileType="1048576" />
+      <File Name="SDK/platform/drivers/inc/power_manager.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718306" FileType="1048576" />
+      <File Name="SDK/rtos/osif/osif.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718259" FileType="1048576" />
+      <File Name="SDK/platform/drivers/src/power/MPC57xx/power_mc_me_hw_access.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718306" FileType="1048576" />
+      <File Name="SDK/platform/drivers/src/power/power_manager.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718290" FileType="1048576" />
+      <File Name="SDK/platform/drivers/src/power/MPC57xx/power_manager_MPC57xx.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718290" FileType="1048576" />
+      <File Name="SDK/platform/drivers/src/flexcan/flexcan_irq.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718275" FileType="1048576" />
+      <File Name="SDK/platform/devices/status.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718321" FileType="1048576" />
+      <File Name="SDK/platform/devices/common/s32_core_e200.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718321" FileType="1048576" />
+      <File Name="SDK/platform/drivers/src/power/MPC57xx/power_mc_me_hw_access.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718290" FileType="1048576" />
+      <File Name="SDK/rtos/osif/osif_baremetal.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718259" FileType="1048576" />
+      <File Name="SDK/platform/drivers/src/edma/edma_hw_access.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718243" FileType="1048576" />
+      <File Name="SDK/platform/drivers/src/flexcan/flexcan_irq.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718275" FileType="1048576" />
+      <File Name="SDK/platform/drivers/src/flash_c55/flash_c55_driver.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718321" FileType="1048576" />
+      <File Name="SDK/platform/drivers/inc/clock_manager.h" FileDate="2018-12-26, 09:45:18" FileAge="1545788718243" FileType="1048576" />
+      <File Name="SDK/platform/drivers/src/edma/edma_hw_access.c" FileDate="2018-12-26, 09:45:18" FileAge="1545788718243" FileType="1048576" />
+    </GeneratedByPE>
+  </GeneratedFilesList>
+  <CodeGenReference>1</CodeGenReference>
+</CodeGenerationInfo>
