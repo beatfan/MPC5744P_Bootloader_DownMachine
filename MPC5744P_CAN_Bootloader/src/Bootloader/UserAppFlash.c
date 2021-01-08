@@ -5,7 +5,6 @@
 /***************************************
  * Flash Block Range
 
-锛�
 // LOW--not program, partition 0 and 1
 0x00800000-0x00803FFF		--		16KB,EEPROM-low block0, RWW_P:0
 0x00804000-0x00807FFF		--		16KB,EEPROM-low block1, RWW_P:0
@@ -39,7 +38,7 @@
 uint32_t USERAPPFLASH_STARTADDR=0x00FA0000;
 uint32_t USERAPPFLASH_ENDADDR=0x011FFFFF;
 
-//erase
+//erase user app, the address must plus 0x8000000, due to upmachine has minus it
 //0xFD0000-0x010032E4, 0x05,0x7d,0x00,0x00,0x80,0x32,0xe4,0x00
 void UserFlash_EraseIvtAndUserAppBlock_g(uint8_t *data, uint8_t length)
 {
@@ -77,10 +76,10 @@ void UserFlash_WriteData(uint32_t addr, uint32_t *data, uint32_t length)
 //	Flash_Lock_g(startAddr,endAddr);
 }
 
-uint32_t m_LastAddr=0x000004+0x800000; //program every 8 address锛�64bits
-uint32_t dataForWrite[2]; //鐎涙ê鍋嶇憰浣稿晸閸忋儳娈�2娑擃亝瀵氭禒銈呯摟閿涘本鐦℃稉顏呭瘹娴犮倕鐡�2娑擄拷16娴ｅ秶绮嶉幋锟�
+uint32_t m_LastAddr=0x000004+0x800000; //store last program address, every 32bits take 4 address
+uint32_t dataForWrite[2]; //minimum flash write segment is 64bits, equal 2*32bits
 
-//program addr must add 0x800000
+//program addr must add 0x800000, due to upmachine has minus 0x800000 to reduce 1 byte occupy
 void UserFlash_DataParseAddrData(uint8_t *data, uint8_t length)
 {
     uint32_t addr;
@@ -92,41 +91,43 @@ void UserFlash_DataParseAddrData(uint8_t *data, uint8_t length)
     dataTmp = data[4]*256*256*256 +data[5]*256*256+ data[6]*256 + data[7];
    
 
-    if(addr%8==0) //鏈鍦板潃鏄粍鍐呯涓�涓暟鎹�
+    if(addr%8==0) //Check if address is align 64bits
         {
-            if(m_LastAddr%8==0) //涓婁竴娆′篃鏄涓�涓紝鍒欏厛濉厖涓婁竴娆＄浜屼釜鎸囦护瀛楋紝鍐欏叆flash锛岀劧鍚庢湰娆￠噸鏂板紑濮�
+            if(m_LastAddr%8==0) //last addr also align 64bits, but one frame only 32bits, so we need to insert 32bits before this
             {
-                dataForWrite[1] = 0xFFFFFFFF; //涓婁竴缁勭浜屼釜鎸囦护瀛楀～鍏�
-                UserFlash_WriteData(m_LastAddr,dataForWrite,2); //涓婁竴娆℃暟鎹粍鍚堝悗锛屽啓鍏�2鎸囦护瀛�
+                dataForWrite[1] = 0xFFFFFFFF; //same to erased value
+                UserFlash_WriteData(m_LastAddr,dataForWrite,2); //write last one segment to flash
             }
-            //涓婁竴娆℃槸绗�1涓垨鑰呯2涓紝鏈閮借閲嶆柊寮�濮�
-            dataForWrite[0] = dataTmp; //鏈涓虹涓�涓寚浠ゅ瓧
+            //copy current data to array 0, new segment
+            dataForWrite[0] = dataTmp;
 
         }
-        else //鏈鍦板潃鏄浜屼釜
+        else //address is not align 64bits
         {
-            if(m_LastAddr%8==0) //涓婁竴娆℃槸绗竴涓紝瑕佺户缁垽鏂槸鍚﹁繛缁�
+            if(m_LastAddr%8==0) //last addr align 64bits
             {
-                if((addr-m_LastAddr)==4) //涓庝笂涓�娆¤繛缁紝濉厖鍒颁笂涓�娆＄殑鏁版嵁涓紝骞跺啓鍏�2涓寚浠ゅ瓧
+                if((addr-m_LastAddr)==4) //check current data if is near last one, if yes fill the second 32bits
                 {
-                    dataForWrite[1] = dataTmp; //鏈涓虹浜屼釜鎸囦护瀛�
-                    UserFlash_WriteData(m_LastAddr,dataForWrite,2); //鏈娆℃暟鎹粍鍚堝悗锛屽啓鍏�2鎸囦护瀛�
+                    dataForWrite[1] = dataTmp; //fill second 32bits
+                    UserFlash_WriteData(m_LastAddr,dataForWrite,2); //write one segment to flash
                 }
-                else //涓庝笂涓�娆′笉杩炵画锛屽～鍏呬笂涓�娆＄殑绗簩涓寚浠ゅ瓧锛岀劧鍚庡～鍏呮湰娆＄殑绗竴涓寚浠ゅ瓧锛屽悓鏃朵袱娆″叡鍐欏叆4涓寚浠ゅ瓧
+                else // current data is not near last one, we will fill two segments
                 {
-                    dataForWrite[1] = 0xFFFFFFFF; //涓婄粍绗簩涓寚浠ゅ瓧濉厖
-                    UserFlash_WriteData(m_LastAddr,dataForWrite,2); //涓婁竴娆℃暟鎹粍鍚堝悗锛屽啓鍏�2鎸囦护瀛�
+					//last addr is align 64bits, means the second 32 bits missed, we fill it
+                    dataForWrite[1] = 0xFFFFFFFF; //fill with erased data
+                    UserFlash_WriteData(m_LastAddr,dataForWrite,2); //write last segment to flash
 
-                    dataForWrite[0] = 0xFFFFFFFF; //濉厖鏈粍绗竴涓寚浠ゅ瓧
-                    dataForWrite[1] = dataTmp; //鏈粍绗簩涓寚浠ゅ瓧
-                    UserFlash_WriteData(addr-4,dataForWrite,2); //鏈娆℃暟鎹粍鍚堝悗锛屽啓鍏�2鎸囦护瀛�
+                    //current addr is not align 64bits, we must insert 32bits 
+                    dataForWrite[0] = 0xFFFFFFFF; //fill with erased data
+                    dataForWrite[1] = dataTmp; //current data
+                    UserFlash_WriteData(addr-4,dataForWrite,2); //write current segment to flash, addr must minus 4 to align 64bits
                 }
             }
-            else//涓婁竴娆′篃鏄2涓紝灏嗘湰娆＄涓�涓寚浠ゅ瓧涔熷～鍏咃紝鍐欏叆
+            else//last addr is not align 64bits, means already writton
             {
-                    dataForWrite[0] = 0xFFFFFFFF; //濉厖鏈粍绗竴涓寚浠ゅ瓧
-                    dataForWrite[1] = dataTmp; //鏈粍绗簩涓寚浠ゅ瓧
-                    UserFlash_WriteData(addr-4,dataForWrite,2); //鏈娆℃暟鎹粍鍚堝悗锛屽啓鍏�2鎸囦护瀛楋紝娉ㄦ剰鍦板潃瑕佸噺2
+                    dataForWrite[0] = 0xFFFFFFFF; //fill with erased data
+                    dataForWrite[1] = dataTmp; //current data
+                    UserFlash_WriteData(addr-4,dataForWrite,2); //write current segment to flash, addr must minus 4 to align 64bits
             }
         }
     
@@ -137,12 +138,13 @@ void UserFlash_DataParseAddrData(uint8_t *data, uint8_t length)
 }
 
 
+/* check if the lattest data is written */
 void UserFlash_LastIsFull64Bits_g()
 {
-	if(m_LastAddr%8==0) //涓婁竴娆℃槸绗竴涓紝瑕佺户缁垽鏂槸鍚﹁繛缁�
+	if(m_LastAddr%8==0) //last addr align 64bits, means only 32bits, we fill the second 32bits
 	{
-		dataForWrite[1] = 0xFFFFFFFF; //涓婄粍绗簩涓寚浠ゅ瓧濉厖
-		UserFlash_WriteData(m_LastAddr,dataForWrite,2); //涓婁竴娆℃暟鎹粍鍚堝悗锛屽啓鍏�2鎸囦护瀛�
+		dataForWrite[1] = 0xFFFFFFFF; //fill with erased data
+		UserFlash_WriteData(m_LastAddr,dataForWrite,2); //write current segment to flash
 	}
 
 	Flash_Lock_g(USERAPPFLASH_STARTADDR,USERAPPFLASH_ENDADDR);

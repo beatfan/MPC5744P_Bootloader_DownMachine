@@ -7,7 +7,8 @@
 #define g_GOTOAPP_TIMEOUT 4
 
 /// <summary>
-/// 閸涙垝鎶ょ猾璇茬��
+/// All command type
+/// in CAN frame first byte
 /// </summary>
 typedef enum 
 {
@@ -15,36 +16,44 @@ typedef enum
 }AfterBootloader_CmdType;
 
 
+
 /// <summary>
-/// 閹恒儲鏁归崚鎷岀箻閸忣檲ootloader鐢嶇礉閸欏秹顩�
+/// The Command for entering bootloader
 /// </summary>
 extern uint8_t g_Bootloader_EntryBootloaderReponse[8];
 
-extern uint8_t g_Bootloader_EntryUserAppReponse[8];
-
 /// <summary>
-/// 濡拷閺岊檲ootloader鐢嶇礉閸欏秹顩�
+/// response for check in bootloader command
 /// </summary>
 extern uint8_t g_Bootloader_CheckBootloaderReponse[8];
 
 /// <summary>
-/// 閹匡箓娅嶧lash鐢嶇礉閸欏秹顩�
+/// after receiving erasing command and then response data
 /// </summary>
 extern uint8_t g_Bootloader_EraseFlashReponse[8];
 
 /// <summary>
-/// 閺佺増宓佺敮褎鈷婇悶鍡楃暚濮ｆ洖娲栨＃锟�
-/// FA 55 02 00 00 00 00 00 00 00 56 FB
+/// after receiving data responsing
+/// 02 00 00 00 00 00 00 00
 /// </summary>
 extern uint8_t g_Bootloader_DataReponse[8];
 
 /// <summary>
-/// 缂傛牜鈻肩紒鎾存将鐢嶇礉閸欏秹顩�
+/// after receiving program end command response
 /// </summary>
 extern uint8_t g_Bootloader_DataProgramEndReponse[8];
 
 
-//閺佺増宓佺憴锝嗙�介敍宀冪箲閸ワ拷0xff閺堫亜绱撶敮锟�
+
+/// <summary>
+/// The Command for entering UserApp
+/// </summary>
+extern uint8_t g_Bootloader_EntryUserAppReponse[8];
+
+
+
+
+/* parse receive one data frame */
 AfterBootloader_CmdType Bootloader_DataParse_g(uint8_t *data, uint8_t dataLength);
 
 

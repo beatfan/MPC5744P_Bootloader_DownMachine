@@ -4,53 +4,55 @@
 
         
 /// <summary>
-/// Bootloader鐢拷
+/// The Command for entering bootloader
 /// </summary>
 uint8_t m_Bootloader_EntryBootloaderCmd[8] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
 /// <summary>
-/// 婢跺秳缍呯敮锟�
+/// The Command for reseting mcu
 /// </summary>
 uint8_t m_Bootloader_ResetCmd_g[8] = { 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
 /// <summary>
-/// 濡拷閺岊檲ootloader鐢拷
+/// The Command for checking if it is in bootloader
 /// </summary>
 uint8_t m_Bootloader_CheckBootloaderCmd[8] = {  0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
 
 /// <summary>
-/// 閹恒儲鏁归崚鎷岀箻閸忣檲ootloader鐢嶇礉閸欏秹顩�
+/// response after entering bootloader after reset
 /// </summary>
 uint8_t g_Bootloader_EntryBootloaderReponse[8] = { 0x00, g_GOTOAPP_TIMEOUT, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
 /// <summary>
-/// 閹恒儲鏁归崚鎷岀箻閸忣檲ootloader鐢嶇礉閸欏秹顩�
+/// response after entering user after reset
 /// </summary>
 uint8_t g_Bootloader_EntryUserAppReponse[8] = { 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
+
 /// <summary>
-/// 濡拷閺岊檲ootloader鐢嶇礉閸欏秹顩�
+/// response for check in bootloader command
 /// </summary>
 uint8_t g_Bootloader_CheckBootloaderReponse[8] = { 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
 /// <summary>
-/// 閹匡箓娅嶧lash鐢嶇礉閸欏秹顩�
+/// after receiving erasing command and then response data
 /// </summary>
 uint8_t g_Bootloader_EraseFlashReponse[8] = {0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
 /// <summary>
-/// 閺佺増宓佺敮褎鈷婇悶鍡楃暚濮ｆ洖娲栨＃锟�
+/// after receiving data responsing
 /// 02 00 00 00 00 00 00 00
 /// </summary>
 uint8_t g_Bootloader_DataReponse[8] ={ 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
         
 /// <summary>
-/// 缂傛牜鈻肩紒鎾存将鐢嶇礉閸欏秹顩�
+/// after receiving program end command response
 /// </summary>
 uint8_t g_Bootloader_DataProgramEndReponse[8] = { 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+   
 
-//濮ｆ柨顕弫鎵矋閿涘矁瀚㈢�瑰苯鍙忔稉锟介懛杈剧礉鏉╂柨娲�0閿涘苯鎯侀崚娆掔箲閸ワ拷1
+/* Check if the data1 is same to data2 , the length is the check depth, return 0 is same, return 1 is not same */
 uint8_t ArrayCheck(uint8_t *data1,uint8_t *data2,uint8_t length)
 {
     uint8_t i,result=0;
@@ -65,14 +67,14 @@ uint8_t ArrayCheck(uint8_t *data1,uint8_t *data2,uint8_t length)
     return result;
 }
 
-//閺佺増宓佺憴锝嗙�介敍宀冪箲閸ワ拷0xff閺堫亜绱撶敮锟�
+/* parse receive one data frame */
 AfterBootloader_CmdType Bootloader_DataParse_g(uint8_t *data, uint8_t dataLength)
 {
     uint8_t result=0;
     if(dataLength!=8)
         return 0xff;
     
-    //閸涙垝鎶ょ猾璇茬��
+    //check command type if is Data
     switch(data[0])
     {
         case EntryBootloader:
@@ -98,4 +100,3 @@ AfterBootloader_CmdType Bootloader_DataParse_g(uint8_t *data, uint8_t dataLength
     
     return result;
 }
-
